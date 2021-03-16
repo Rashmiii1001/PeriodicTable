@@ -4,15 +4,6 @@
     <meta charset="utf-8">
     <title>Chemistry Project</title>
     <style>
-      /* body
-      {
-      margin: 0;
-      }
-      canvas
-      {
-      width:100%;
-      height:100%;
-      } */
       body {
             overflow: hidden;
             margin: 0px;
@@ -22,15 +13,15 @@
             top: 20px;
             width: 100%;
             text-align: center;
-            color: white;
+            color: snow;
             font-size: 35px;
             z-index: 100;
             display:block;
         }
         #hydrogen_text{
             position:absolute;
-            height: 230px;
-            width: 190px;
+            height: 35%;
+            width: 18%;
             margin-top: 7%;
             background-color: rgba(128, 128, 128, 0.486);
             opacity: 0.4;
@@ -38,15 +29,15 @@
             font-size: 35px;
             text-align: center;
             font-weight: bold;
-            color: white;
-            border: 1px solid deepskyblue ;
+            color: snow;
+            border: 1px solid beige ;
             padding: 3%;
             display: none;
         }
         #helium_text{
             position:absolute;
-            height: 230px;
-            width: 180px;
+            height: 40%;
+            width: 20%;
             margin-top: 7%;
             background-color: rgba(128, 128, 128, 0.486);
             opacity: 0.4;
@@ -54,15 +45,15 @@
             font-size: 35px;
             text-align: center;
             font-weight: bold;
-            color: white;
-            border: 1px solid deepskyblue ;
+            color: snow;
+            border: 1px solid beige ;
             padding: 3%;
             display: none;
         }
         #berrylium_text{
             position:absolute;
-            height: 230px;
-            width: 190px;
+            height: 35%;
+            width: 18%;
             margin-top: 7%;
             background-color: rgba(128, 128, 128, 0.486);
             opacity: 0.4;
@@ -70,15 +61,15 @@
             font-size: 35px;
             text-align: center;
             font-weight: bold;
-            color: white;
-            border: 1px solid deepskyblue ;
+            color: snow;
+            border: 1px solid beige ;
             padding: 3%;
             display: none;
         }
         #lithium_text{
             position:absolute;
-            height: 230px;
-            width: 180px;
+            height: 35%;
+            width: 18%;
             margin-top: 7%;
             background-color: rgba(128, 128, 128, 0.486);
             opacity: 0.4;
@@ -86,15 +77,15 @@
             font-size: 35px;
             text-align: center;
             font-weight: bold;
-            color: white;
-            border: 1px solid deepskyblue ;
+            color: snow;
+            border: 1px solid beige ;
             padding: 3%;
             display: none;
         }
         #boron_text{
             position:absolute;
-            height: 230px;
-            width: 180px;
+            height: 35%;
+            width: 18%;
             margin-top: 7%;
             background-color: rgba(128, 128, 128, 0.486);
             opacity: 0.4;
@@ -102,8 +93,8 @@
             font-size: 35px;
             text-align: center;
             font-weight: bold;
-            color: white;
-            border: 1px solid deepskyblue ;
+            color: snow;
+            border: 1px solid beige ;
             padding: 3%;
             display: none;
         }
@@ -112,87 +103,58 @@
   <body>
     <script src="JS Files/three.js"></script>
     <script src="JS Files/OrbitControls.js"></script>
-    <!-- 10/03/2021 Finallllll -->
-    <!-- Final -->
-    <!-- <script src="finalll.js"></script> -->
-    <!-- AdityaG -->
-    <!-- <script src="periodicTable.js"></script> -->
-    <!-- Table -->
-    <!-- <script src="table1.js"></script> -->
-    <!-- Table LH-->
-    <!-- <script src="tableLH.js"></script> -->
-    <!-- H -->
-    <!-- <script src="threePro.js"></script> -->
-    <!-- He -->
-    <!-- <script src="threePro1.js"></script> -->
-    <!-- L -->
-    <!-- <script src="threePro2.js"></script> -->
-    <!-- B -->
-    <!-- <script src="threePro3.js"></script> -->
-    <!-- Be -->
-    <!-- <script src="threePro4.js"></script> -->
-    <!-- planet -->
-    <!-- <script src="planetarySystem.js"></script> -->
 
     <div id='info'>PERIODIC TABLE</div>
     <div id = 'hydrogen_text'>HYDROGEN
 
             <ul style="font-size: 23px; text-align: left;">
-                <li>Radius: 6,378 km</li>
-                <li>Circumference: 40,075 km</li>
-                <li>Density: 5.513 g/cc</li>
+                <li>Symbol: H</li>
+                <li>Atomic Nummber: 1</li>
+                <li>Atomic Mass: 1.008</li>
+                <li>Discovered by: Henry Cavendish</li>
             </ul>
-
-    </div>
-
-    <div id = 'lithium_text'>LITHIUM
-
-            <ul style="font-size: 23px; text-align: left;">
-                <li>Radius: 6,378 km</li>
-                <li>Circumference: 40,075 km</li>
-                <li>Density: 5.513 g/cc</li>
-            </ul>
-
     </div>
 
     <div id = 'helium_text'>HELIUM
-
             <ul style="font-size: 23px; text-align: left;">
-                <li>Radius: 6,378 km</li>
-                <li>Circumference: 40,075 km</li>
-                <li>Density: 5.513 g/cc</li>
+              <li>Symbol: He</li>
+              <li>Atomic Nummber: 2</li>
+              <li>Atomic Mass: 4.003</li>
+              <li>Discovered by: Sir William Ramsay, Per Teodor Cleve and Nils Abraham Langlet</li>
             </ul>
-
     </div>
 
-    <div id = 'berrylium_text'>BERRYLIUM
 
+    <div id = 'lithium_text'>LITHIUM
             <ul style="font-size: 23px; text-align: left;">
-                <li>Radius: 6,378 km</li>
-                <li>Circumference: 40,075 km</li>
-                <li>Density: 5.513 g/cc</li>
+              <li>Symbol: Li</li>
+              <li>Atomic Nummber: 3</li>
+              <li>Atomic Mass: 6.941</li>
+              <li>Discovered by: Johann Artvedson</li>
             </ul>
+    </div>
 
+
+    <div id = 'berrylium_text'>BERRYLIUM
+            <ul style="font-size: 23px; text-align: left;">
+              <li>Symbol: Be</li>
+              <li>Atomic Nummber: 4</li>
+              <li>Atomic Mass: 9.01218</li>
+              <li>Discovered by: Nicholas Louis Vauquelin</li>
+            </ul>
     </div>
 
     <div id = 'boron_text'>BORON
 
-            <ul style="font-size: 23px; text-align: left;">
-                <li>Radius: 6,378 km</li>
-                <li>Circumference: 40,075 km</li>
-                <li>Density: 5.513 g/cc</li>
+            <ul style="font-size: 23px; text-align: left;"
+              <li>Symbol: BS</li>
+              <li>Atomic Nummber: 5</li>
+              <li>Atomic Mass: 10.821</li>
+              <li>Discovered by: joseph Louis Gay-Lussac</li>
             </ul>
     </div>
 
 
     <script src="threeTable.js"></script>
-    <script type="text/javascript">
-    document.getElementById('hydrogen_text').style.display = 'none';
-    document.getElementById('boron_text').style.display = 'none';
-    document.getElementById('berrylium_text').style.display = 'none';
-    document.getElementById('lithium_text').style.display = 'none';
-    document.getElementById('helium_text').style.display = 'none';
-
-    </script>
   </body>
 </html>
