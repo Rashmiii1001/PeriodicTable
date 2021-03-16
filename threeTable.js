@@ -3,7 +3,6 @@ var materiall, materiall1, materiall2, materiall3, materiall4, materiall5, mater
 var hydrogen, helium, boron, lithium, beryllium;
 var sphere, sphere1, sphere2, sphere3, sphere4, sphere5;
 
-
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight,0.1,1000);
 var renderer = new THREE.WebGLRenderer({antialias : true});
@@ -17,10 +16,12 @@ window.addEventListener('resize', function()
   var height = window.innerHeight;
   renderer.setSize(width, height);
   camera.aspect = width/height;
-  camera.updateProjectionMatrix();       //kya hai yeeee
+  camera.updateProjectionMatrix();
 });
 
 var controls = new THREE.OrbitControls(camera,renderer.domElement);
+
+// to fix control...allows moving along y-axis only
 // controls.maxPolarAngle = Math.PI/2;
 // controls.minPolarAngle = Math.PI/2;
 
@@ -151,62 +152,59 @@ var renderH = function()
 
   sphere1.position.z = r*Math.sin(theta);
   sphere1.position.x = r*Math.cos(theta);
-
-  };
-
-
-
-  //Lithium
-  var renderL = function()
-  {
-    renderEmpty();
-    orbits(sphere, 15, 100);
-    orbits(sphere, 25, 100);
-    scene.add(sphere);
-    scene.add(sphere1);
-    scene.add(sphere2);
-    scene.add(sphere3);
-
-    theta += dtheta;
-
-    sphere1.position.z = r*Math.sin(theta);
-    sphere1.position.x = r*Math.cos(theta);
-
-    sphere2.position.x = r*Math.cos(theta+180);
-    sphere2.position.z = r*Math.sin(theta+180);
-
-    sphere3.position.x = (r+10)*Math.cos(theta+90);
-    sphere3.position.z = (r+10)*Math.sin(theta+90);
-
 };
 
-  //Be
-  var renderBe = function()
-  {
-    renderEmpty();
-    orbits(sphere, 15, 100);
-    orbits(sphere, 25, 100);
-    scene.add(sphere);
 
-    scene.add(sphere1);
-    scene.add(sphere2);
-    scene.add(sphere3);
-    scene.add(sphere4);
 
-    theta += dtheta;
+//Lithium
+var renderL = function()
+{
+  renderEmpty();
+  orbits(sphere, 15, 100);
+  orbits(sphere, 25, 100);
+  scene.add(sphere);
+  scene.add(sphere1);
+  scene.add(sphere2);
+  scene.add(sphere3);
 
-    sphere1.position.z = r*Math.sin(theta);
-    sphere1.position.x = r*Math.cos(theta);
+  theta += dtheta;
 
-    sphere2.position.x = r*Math.cos(theta+180);
-    sphere2.position.z = r*Math.sin(theta+180);
+  sphere1.position.z = r*Math.sin(theta);
+  sphere1.position.x = r*Math.cos(theta);
 
-    sphere3.position.x = (r+10)*Math.cos(theta+90);
-    sphere3.position.z = (r+10)*Math.sin(theta+90);
+  sphere2.position.x = r*Math.cos(theta+180);
+  sphere2.position.z = r*Math.sin(theta+180);
 
-    sphere4.position.x= (r+10)*Math.cos(theta+150);
-    sphere4.position.z = (r+10)*Math.sin(theta+150);
+  sphere3.position.x = (r+10)*Math.cos(theta+90);
+  sphere3.position.z = (r+10)*Math.sin(theta+90);
+};
 
+//Beryllium
+var renderBe = function()
+{
+  renderEmpty();
+  orbits(sphere, 15, 100);
+  orbits(sphere, 25, 100);
+  scene.add(sphere);
+
+  scene.add(sphere1);
+  scene.add(sphere2);
+  scene.add(sphere3);
+  scene.add(sphere4);
+
+  theta += dtheta;
+
+  sphere1.position.z = r*Math.sin(theta);
+  sphere1.position.x = r*Math.cos(theta);
+
+  sphere2.position.x = r*Math.cos(theta+180);
+  sphere2.position.z = r*Math.sin(theta+180);
+
+  sphere3.position.x = (r+10)*Math.cos(theta+90);
+  sphere3.position.z = (r+10)*Math.sin(theta+90);
+
+  sphere4.position.x= (r+10)*Math.cos(theta+150);
+  sphere4.position.z = (r+10)*Math.sin(theta+150);
 };
 
 
@@ -258,9 +256,9 @@ var renderHe = function()
 
   sphere2.position.x = r*Math.cos(theta+180);
   sphere2.position.z = r*Math.sin(theta+180);
-
 };
 
+// Add only boxes
 var renderEmpty = function()
 {
   scene.clear();
@@ -283,22 +281,24 @@ const mouse = new THREE.Vector2();
 function onMouseMove( event ) {
  mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
  mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
-
 }
 
 window.addEventListener('click', onMouseMove, false);
 
-
 function animate() {
+ //to render the elements boxes
  renderEmpty();
+
  // console.log(scene.children);
  requestAnimationFrame(animate);
+
  //Using raycasting to select the object
  raycaster.setFromCamera (mouse, camera);
- const intersects = raycaster.intersectObjects (scene.children);
 
- // console.log(intersects);
- if (intersects[0]){
+ var child = [hydrogen,helium,boron,beryllium,lithium];
+ const intersects = raycaster.intersectObjects (child);
+
+ if (intersects[0]){                                      //true when we click on any object on scene
    if (intersects[0].object.geometry.id == '18') {
      renderL();
      document.getElementById('hydrogen_text').style.display = 'none';
@@ -339,19 +339,36 @@ function animate() {
      document.getElementById('lithium_text').style.display = 'none';
      document.getElementById('helium_text').style.display = 'block';
       }
-   else {
-     renderEmpty();
-     document.getElementById('hydrogen_text').style.display = 'none';
-     document.getElementById('boron_text').style.display = 'none';
-     document.getElementById('berrylium_text').style.display = 'none';
-     document.getElementById('lithium_text').style.display = 'none';
-     document.getElementById('helium_text').style.display = 'none';
-     // controls.update();
-     console.log('elseeee parttt me gayaaaa');
-      }
     }
+    else {
+      renderEmpty();
+      document.getElementById('hydrogen_text').style.display = 'none';
+      document.getElementById('boron_text').style.display = 'none';
+      document.getElementById('berrylium_text').style.display = 'none';
+      document.getElementById('lithium_text').style.display = 'none';
+      document.getElementById('helium_text').style.display = 'none';
+      // console.log('in outer else');
+       }
  renderer.render(scene, camera);
 }
+
+
+// ---------------- Using esc key code ----------------
+
+// document.addEventListener("keydown", function(event) {
+//     if(event.keyCode === 27){
+//        //Esc key was pressed
+//         console.log('esc working');
+//         scene.clear();
+//         document.getElementById('hydrogen_text').style.display = 'none';
+//         document.getElementById('boron_text').style.display = 'none';
+//         document.getElementById('berrylium_text').style.display = 'none';
+//         document.getElementById('lithium_text').style.display = 'none';
+//         document.getElementById('helium_text').style.display = 'none';
+//         // renderEmpty();
+//    }
+// });
+
 
  init();
  animate();
